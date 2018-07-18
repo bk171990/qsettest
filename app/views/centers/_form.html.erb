@@ -1,0 +1,209 @@
+<div class="row"> 
+                <div class="col-md-12">
+                <br>
+                  <br>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading clearfix"> 
+                            <div class="panel-title">Centers</div> 
+                            <ul class="panel-tool-options"> 
+                               <!--  <li class="dropdown">
+                                    <a data-toggle="dropdown" class="dropdown-toggle" href="#" aria-expanded="false"><i class="icon-cog"></i></a>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li><a href="#"><i class="icon-arrows-ccw"></i> Update data</a></li>
+                                        <li><a href="#"><i class="icon-list"></i> Detailed log</a></li>
+                                        <li><a href="#"><i class="icon-chart-pie"></i> Statistics</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#"><i class="icon-cancel"></i> Clear list</a></li>
+                                    </ul>
+                                 </li> -->
+                                <li><a data-rel="collapse" href="#"><i class="icon-down-open"></i></a></li>
+                                <!-- <li><a data-rel="reload" href="#"><i class="icon-arrows-ccw"></i></a></li> -->
+                                <li><a data-rel="close" href="#"><i class="icon-cancel"></i></a></li>
+                            </ul> 
+                        </div> 
+                        <br>
+                       
+        <div class="panel-body"> 
+          <div class="panel-body collapse in" id="collapsepanel">
+              <ol class="breadcrumb breadcrumb-2"> 
+                <li><a href="/home/dashboard"><i class="icon-folder"></i>Home</a></li> 
+                <li class="active">Center</li> 
+              </ol> 
+            </div>
+ 
+<%= form_with(model: center, local: true) do |form| %>
+  <% if center.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(center.errors.count, "error") %> prohibited this center from being saved:</h2>
+
+      <ul>
+      <% center.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+ <form class="form-horizontal">
+
+     <div class="form-group">
+        <div class="col-md-4">
+          <label class="col-sm-6 control-label">Center Name<font color="red">*</font></label>
+    <%= form.text_field :center_name, id: :center_center_name, placeholder: 'Center Name', class: 'form-control' %>
+    </div>
+  </div>
+
+      <div class="form-group">
+        <div class="col-md-4">
+          <label class="col-sm-6 control-label">Center Address</label>
+    <%= form.text_field :address, id: :center_address, placeholder: 'Center Address', class: 'form-control' %>
+      </div>
+    </div>
+
+   <div class="form-group">
+        <div class="col-md-4">
+          <label class="col-sm-6 control-label">City</label>
+          <%= form.text_field :city, id: :center_city , placeholder: 'City', class: 'form-control'%>
+      </div>
+  </div>
+
+    <div class="form-group">
+        <div class="col-md-4">
+          <label class="col-sm-6 control-label">Center State</label>
+       
+                  <%= form.select :state, options_for_select(["Andaman Nicobar Islands",
+              "Andhra Pradesh","Arunachal Pradesh","Assam","Bihar","Chandigarh","Chhattisgarh","Dadra and Nagar Haveli", "Daman and Diu","Delhi","Goa", "Gujarat","Haryana","Himachal Pradesh", "Jammu and Kashmir", "Jharkhand", "Karnataka","Kerala","Lakshadweep", "Madhya Pradesh", "Maharashtra","Manipur","Meghalaya","Mizoram","Nagaland","Odisha","Puducherry","Punjab","Rajasthan","Sikkim","Tamil Nadu","Tripura","Uttar Pradesh","Uttarakhand", "West Bengal"
+             ]),{prompt:true}, class: "form-control" %>
+    </div>
+
+     <div class="form-group">
+        <div class="col-md-4">
+          <label class="col-sm-6 control-label">Pan Card No</label>
+      <%= form.text_field :pan_card_no, id: :pan_no , placeholder: 'Pan Card No', class: 'form-control', onchange: "myFunction()",maxLength: "10" %>
+      </div>
+    </div>
+
+      <div class="form-group">
+        <div class="col-md-4">
+          <label class="col-sm-6 control-label">Contact<font color="red">*</font></label>
+          <%= form.text_field :contact, id: :center_contact, placeholder: 'Contact', class: 'form-control',maxLength: "10" %>
+      </div>
+    </div>
+
+      <div class="form-group">
+        <div class="col-md-4">
+          <label class="col-sm-6 control-label">Alternate Contact</label>
+        <%= form.text_field :alternate_contact, id: :center_alternate_contact, placeholder: 'Alternate Contact', class: 'form-control',maxLength: "10" %>
+      </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-4">
+          <label class="col-sm-8 control-label">Center Starting Date</label>
+         <%= form.date_field :center_starting_date, id: :center_center_starting_date, placeholder: 'Center Starting Date', class: 'form-control' %>
+       </div>
+      </div>
+
+
+      <div class="form-group">
+        <div class="col-md-4">
+          <label class="col-sm-8 control-label">Contact Person Name</label>
+    <%= form.text_field :contact_person_name, id: :center_contact_person_name, placeholder: 'Contact Person Name', class: 'form-control' %>
+  </div>
+
+     <div class="form-group">
+        <div class="col-md-4">
+          <label class="col-sm-8 control-label">Residential Address</label>
+      <%= form.text_field :residential_address, id: :center_residential_address , placeholder: 'Residential Address', class: 'form-control'%>
+     </div>
+    </div>
+
+     <div class="form-group">
+        <div class="col-md-4">
+          <label class="col-sm-6 control-label">Email<font color="red">*</font></label>
+        <%= form.text_field :email, id: :email, placeholder: 'Email', class: 'form-control' %>
+        </div>
+  </div>
+
+   <div class="form-group">
+        <div class="col-md-4">
+          <label class="col-sm-6 control-label">Center Code</label>
+        <%= form.text_field :center_code, id: :center_center_code, placeholder: 'Center Code', readonly:true, class: 'form-control' %>
+        </div>
+  </div>
+
+ 
+ <div class="form-group">
+        <div class="col-md-4">
+          <label class="col-sm-6 control-label">Country</label>
+          <%=country_select("center", "countries", { priority_countries: ["IN", "FR"], selected: "IN" }, { class: 'form-control', data: { attribute: "value" } })%>
+        </div>
+   </div>
+
+     <div class="col-md-4"> 
+                  <div class="form-group"> 
+                    <label for="username" class="control-label">Upload Photo</label>
+
+                    <%= form.file_field :photo, placeholder: "Upload Photo", class: "form-control"%>
+                  </div> 
+                </div>
+
+<% if current_user.role == 'SuperAdmin'%>
+  <div class="form-group">
+        <div class="col-md-4">
+          <label class="col-sm-6 control-label">Status</label>
+  <%= form.radio_button "center_status", "Active" %> <b>Active</b>
+              <%= form.radio_button "center_status", "Inactive", checked: "checked"%> <b>Inactive</b>
+  </div>
+ </div>
+ <%end%>
+
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                        <div class="form-group"> 
+                                <div class="col-sm-offset-1 col-sm-10">  
+     <%= form.submit "Submit", class: 'btn btn-success' %>
+     <%= link_to 'Back', centers_path, class: 'btn btn-red' %>
+     
+  </div>
+  </div>
+ 
+<% end %>
+</div>
+</div></div></div>
+
+
+<script type="text/javascript">
+  var validateEmail = function(elementValue) {
+    var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    return emailPattern.test(elementValue);
+}
+$('#email').keyup(function() {
+    var value = $(this).val();
+    var valid = validateEmail(value);
+    if (!valid) {
+        $(this).css('color', 'red');
+    } else {
+        $(this).css('color', '#000');
+    }
+});
+</script>
+
+<script type="text/javascript">
+  
+function myFunction(x)
+{ 
+ var x = document.getElementById("pan_no");
+var letters = /^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/;
+if(x.value.match(letters))
+{
+document.form1.text1.focus();
+return true;
+}
+else
+{
+alert('Please input correct characters in PAN No. ');
+return false;
+}
+}
+
+</script>

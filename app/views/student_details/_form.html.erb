@@ -1,0 +1,410 @@
+  <link href="/assets/select2.css" rel="stylesheet">
+
+  <div class="row"> 
+                <div class="col-md-12">
+                 <br>
+                 <br>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading clearfix"> 
+                            <div class="panel-title">Student Details</div> 
+                            <ul class="panel-tool-options"> 
+                               <!--  <li class="dropdown">
+                                    <a data-toggle="dropdown" class="dropdown-toggle" href="#" aria-expanded="false"><i class="icon-cog"></i></a>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li><a href="#"><i class="icon-arrows-ccw"></i> Update data</a></li>
+                                        <li><a href="#"><i class="icon-list"></i> Detailed log</a></li>
+                                        <li><a href="#"><i class="icon-chart-pie"></i> Statistics</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#"><i class="icon-cancel"></i> Clear list</a></li>
+                                    </ul>
+                                 </li> -->
+                                <li><a data-rel="collapse" href="#"><i class="icon-down-open"></i></a></li>
+                                <!-- <li><a data-rel="reload" href="#"><i class="icon-arrows-ccw"></i></a></li> -->
+                                <li><a data-rel="close" href="#"><i class="icon-cancel"></i></a></li>
+                            </ul> 
+                        </div> 
+                        <br>
+                       
+                        <div class="panel-body"> 
+<%#= form_with(model: enquiry, local: true) do |form| %>
+  <div class="panel-body collapse in" id="collapsepanel">
+              <ol class="breadcrumb breadcrumb-2"> 
+                <li><a href="/home/dashboard"><i class="icon-folder"></i>Home</a></li> 
+                <li class="active">Student Enquiry</li> 
+              </ol> 
+  </div>
+
+
+  <%= form_for @student_detail do |form| %>
+  <% if student_detail.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(student_detail.errors.count, "error") %> prohibited this student_detail from being saved:</h2>
+
+      <ul>
+      <% student_detail.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+   <form class="form-horizontal">
+  
+   <div class="form-group">
+        <div class="col-md-4">
+        <label class="col-sm-10 control-label">Course Applied For<font color="red">*</font></label>
+       
+    <%= form.select :course_ids ,Course.all.collect{|c| [c.course_name,c.id]},{prompt: true},class: "form-control" , class: "js-example-basic-multiple" , multiple: "multiple",class: "form-control selectpicker", "data-live-search" => "true"%>
+  </div>
+</div>
+  
+    <div class="form-group">
+        <div class="col-md-4">
+        <label class="col-sm-6 control-label">First Name<font color="red">*</font></label>
+    <%= form.text_field :first_name, id: :student_detail_first_name , class: "form-control" %>
+  </div>
+</div>
+
+<!-- <div class="form-group">
+        <div class="col-md-4">
+        <label class="col-sm-6 control-label">Middle Name</label>
+    <%#= form.text_field :middle_name, id: :student_detail_middle_name , class: "form-control" %>
+  </div>
+</div>
+ -->
+<div class="form-group">
+        <div class="col-md-4">
+        <label class="col-sm-6 control-label">Last Name</label>
+    <%= form.text_field :last_name, id: :student_detail_last_name , class: "form-control" %>
+  </div>
+</div>
+
+<!--  <div class="form-group">
+        <div class="col-md-4">
+        <label class="col-sm-6 control-label">Age</label> -->
+    <%#= form.text_field :age, id: :student_detail_age , class: "form-control" %>
+<!--     </div>
+  </div>
+ -->
+ <div class="form-group">
+   <div class="col-md-4">
+        <label class="col-sm-6 control-label">Birthdate<font color="red">*</font></label>
+    <%= form.date_field :birthdate, id: :student_detail_birthdate , class: "form-control" %>
+  </div>
+</div>
+
+ <div class="form-group">
+        <div class="col-md-4">
+        <label class="col-sm-6 control-label">Father's Name</label>
+    <%= form.text_field :father_name, id: :student_detail_father_name , class: "form-control" %>
+  </div>
+</div>
+
+ <div class="form-group">
+    <div class="col-md-4">
+      <label class="col-sm-6 control-label">Mother's Name</label>
+    <%= form.text_field :mother_name, id: :student_detail_mother_name , class: "form-control" %>
+  </div>
+</div>
+
+ <div class="form-group">
+        <div class="col-md-4">
+        <label class="col-sm-10 control-label">Father's Education</label>
+    <%= form.text_field :father_education, id: :student_detail_father_education , class: "form-control" %>
+  </div>
+</div>
+
+ <div class="form-group">
+        <div class="col-md-4">
+        <label class="col-sm-10 control-label">Father's Occupation</label>
+    <%= form.select :father_occupation, options_for_select(["GOVT","PRIVATE","BUSINESS","OTHER"]) ,{prompt:true}, class: "form-control"  , class: "form-control selectpicker" , "data-live-search" => "true"%>
+  </div>
+</div>
+
+<div class="form-group">
+        <div class="col-md-4">
+        <label class="col-sm-10 control-label">Mother's Education</label>
+    <%= form.text_field :mother_education, id: :student_detail_mother_education , class: "form-control" %>
+  </div>
+</div>
+
+ <div class="form-group">
+        <div class="col-md-4">
+        <label class="col-sm-10 control-label">Mother's Occupation</label>
+    <%= form.select :mother_occupation, options_for_select(["GOVT","PRIVATE","BUSINESS","HOUSEWIFE","OTHER"]) ,{prompt:true}, class: "form-control", class: "form-control selectpicker" , "data-live-search" => "true" %>
+  </div>
+</div>
+
+<div class="form-group">
+        <div class="col-md-4">
+        <label class="col-sm-6 control-label">SSC Marks<font color="red">*</font></label>
+    <%= form.text_field :ssc_marks, id: :student_detail_ssc_marks , class: "form-control" %>
+  </div>
+</div>
+
+<div class="form-group">
+        <div class="col-md-4">
+        <label class="col-sm-6 control-label">HSC Marks</label>
+    <%= form.text_field :hsc_marks, id: :student_detail_hsc_marks , class: "form-control" %>
+  </div>
+</div>
+
+<div class="form-group">
+        <div class="col-md-4">
+        <label class="col-sm-6 control-label">PCB %</label>
+    <%= form.text_field :pcb, id: :student_detail_pcb , class: "form-control" %>
+  </div>
+</div>
+
+<div class="form-group">
+        <div class="col-md-4">
+        <label class="col-sm-6 control-label">PCM %</label>
+    <%= form.text_field :pcm, id: :student_detail_pcm , class: "form-control" %>
+  </div>
+</div>
+
+<div class="form-group">
+        <div class="col-md-4">
+        <label class="col-sm-6 control-label">Address</label>
+    <%= form.text_area :address, id: :student_detail_address , class: "form-control" %>
+  </div>
+</div>
+
+<div class="form-group">
+        <div class="col-md-4">
+        <label class="col-sm-6 control-label">Contact No<font color="red">*</font></label>
+    <%= form.text_field :contact_no, id: :student_detail_contact_no , class: "form-control", maxlength: "10" %>
+  </div>
+</div>
+<!--  <div class="row">
+                <div class="col-md-4"> 
+                  <div class="form-group"> 
+                    <input type="checkbox" id="toshipping_checkbox">
+                    <em>Check this box if Whatsapp is same as above</em>
+                  </div>
+                </div>
+              </div> -->
+
+
+<div class="form-group">
+        <div class="col-md-4">
+        <label class="col-sm-6 control-label">WhatsApp No</label>
+    <%= form.text_field :wp_no, id: :shipping_address_1 , class: "form-control",maxlength: "10"  %>
+  </div>
+</div>
+
+<div class="form-group">
+        <div class="col-md-4">
+        <label class="col-sm-6 control-label">Alternate No</label>
+    <%= form.text_field :alternate_no, id: :student_detail_alternate_no , class: "form-control", maxlength: "10" %>
+  </div>
+</div>
+
+
+
+<div class="form-group">
+        <div class="col-md-4">
+        <label class="col-sm-6 control-label">Email ID<font color="red">*</font></label>
+    <%= form.text_field :email, id: :email , class: "form-control" %>
+  </div>
+</div>
+
+<div class="form-group">
+        <div class="col-md-4">
+        <label class="col-sm-6 control-label">Select Category</label>
+    <%= form.select :category_list ,options_for_select(["OPEN","RESERVED"]),{prompt:true} ,class: "form-control" ,class: "form-control selectpicker", "data-live-search" => "true"  %>
+  </div>
+</div>
+
+ <div class="col-md-4"> 
+          <div class="form-group"> 
+
+            <label for="cvc" class="control-label">NEET Score</label>
+
+            <%= form.text_field :neet, id: :neet,placeholder: 'NEET', class: 'form-control'%>
+            <p id="message" style="display:none;" ><font color='red'>Your are not eligible</font></p>
+          </div>
+        </div>
+
+
+<div class="form-group">
+        <div class="col-md-4">
+        <label class="col-sm-10 control-label">Select Budget<font color="red">*</font></label>
+ <%= form.select('budget_id', options_for_select(Budget.all.collect{ |b| [b.budget_range, b.id] }),{prompt:true},class: "form-control selectpicker", "data-live-search" => "true")%>   </div>
+</div>
+
+<div class="form-group">
+     <div class="col-md-4"> 
+    <label class="col-sm-6 control-label">Select Country</label>
+      <%= form.select :country_ids ,Country.all.collect{|c| [c.country,c.id]},{prompt: true},class: "form-control" , class: "js-example-basic-multiple" , multiple: "multiple",class: "form-control selectpicker", "data-live-search" => "true"%>
+      </div>
+  </div>
+
+   <div class="form-group">
+     <div class="col-md-4">
+        <label class="col-sm-10 control-label">Select College</label>
+    <%= form.select :medical_college_ids ,MedicalCollege.all.collect{|m| [m.college_name, m.id]},{prompt: true},class: "form-control" , class: "js-example-basic-multiple" , multiple: "multiple",class: "form-control selectpicker", "data-live-search" => "true"%>
+      </div>
+    </div>
+
+ <div class="form-group">
+     <div class="col-md-4">
+        <label class="col-sm-10 control-label">Select Status</label>
+    <%= form.select :status_update_id ,StatusUpdate.all.collect{|m| [m.add_status, m.id]},{prompt: true},class: "form-control selectpicker", "data-live-search" => "true"%>
+      </div>
+    </div>
+
+<br><br><br><br><br><br><br>
+
+
+<!-- 
+<div class="form-group">
+        <div class="col-md-4">
+        <label class="col-sm-6 control-label">Signature</label>
+    <%#= form.text_area :signature, id: :student_detail_signature , class: "form-control" %>
+  </div>
+</div>
+ -->
+   
+<div class="form-group"> 
+   <div class="col-sm-offset-1 col-sm-10"> 
+   <div align="center"> 
+     <%= form.submit "Submit", class: 'btn btn-success' %>
+     <%= link_to 'Back', student_details_path, class: 'btn btn-red' %>
+   </div>
+   </div>
+</div>
+
+
+  <%#= link_to 'Back' , questions_path , class: :"btn btn-primary" %>
+
+     
+     <br><br><br><br><br><br>   <br><br><br>                        
+ 
+<% end %>
+</div>
+</div>
+
+<script type="text/javascript">
+
+  $(document).ready(function() {
+    $("#neet").keyup(function() {
+      alert(aa);
+      var a = $("#student_detail_category_list").val();
+      alert(a);
+      if (this.value <= 119 && a == '1') {
+        $("#message").css("display", "block");
+      }
+      else if (this.value <= 96 && a >= 1) {
+       $("#message").css("display", "block");
+     }
+    else{
+      $("#message").css("display", "none");
+    }
+
+  });
+  });
+</script>
+<!-- 
+<script type="text/javascript">
+  $("#toshipping_checkbox").on("click",function(){
+    alert(wwqwq);
+    var ship = $(this).is(":checked");
+    $("[id^='shipping_']").each(function(){
+      var tmpID = this.id.split('shipping_')[1];
+      $(this).val(ship?$("#"+tmpID).val():"");
+    });
+  });
+</script> -->
+
+<script type="text/javascript">
+  var validateEmail = function(elementValue) {
+    var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    return emailPattern.test(elementValue);
+}
+
+
+
+$('#email').keyup(function() {
+    var value = $(this).val();
+    var valid = validateEmail(value);
+    if (!valid) {
+        $(this).css('color', 'red');
+    } else {
+        $(this).css('color', '#000');
+    }
+});
+</script>
+
+  <head>
+        <link href="/assets/select2.css" rel="stylesheet"/>
+        <script src="/assets/select2-full.js"></script>
+        <script>
+$(document).ready(function() {
+    $('.js-example-basic-multiple').select2();
+});
+</script>
+</head>
+<!-- <script>
+$("select").on('click', 'option', function() {
+    if ($("select option:selected").length > 3) {
+        $(this).removeAttr("selected");
+        // alert('You can select upto 3 options only');
+    }
+});
+</script> -->
+<!-- <script type="text/javascript">
+  jQuery(function() {
+
+  var states;
+
+  $('#student_detail_medical_college_id').parent().hide();
+  states = $('#student_detail_medical_college_id').html();
+  console.log(states);
+
+  
+
+  return $('#student_detail_country_id').change(function() {
+    
+
+    var country, escaped_country, options;
+    country = $('#student_detail_country_id :selected').text();
+  
+    escaped_country = country.replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
+    options = $(states).filter("optgroup[label=" + escaped_country + "]").html();
+    console.log(options);
+    if (options) {
+     
+      
+      $('#student_detail_medical_college_id').html(options);
+      return $('#student_detail_medical_college_id').parent().show();
+    } else {
+      $('#student_detail_medical_college_id').empty();
+
+      return $('#student_detail_medical_college_id').parent().hide();
+    }
+  });
+});
+</script>
+
+
+
+ -->
+
+<script type="text/javascript">
+
+$('#neet').keyup(function() {
+    var a = $("#student_detail_category_list").val();
+    if (this.value < 119 || this.value < 96) {
+       $("#message").css("display", "block");
+     }
+     else{
+
+      $("#message").css("display", "none");
+    
+     }
+    
+
+  
+});
+</script>

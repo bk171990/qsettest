@@ -1,0 +1,173 @@
+<div class="row"> 
+                <div class="col-md-12">
+                 <br>
+                 <br>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading clearfix"> 
+                            <div class="panel-title">Employees</div> 
+                            <ul class="panel-tool-options"> 
+                                <!-- <li class="dropdown">
+                                    <a data-toggle="dropdown" class="dropdown-toggle" href="#" aria-expanded="false"><i class="icon-cog"></i></a>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li><a href="#"><i class="icon-arrows-ccw"></i> Update data</a></li>
+                                        <li><a href="#"><i class="icon-list"></i> Detailed log</a></li>
+                                        <li><a href="#"><i class="icon-chart-pie"></i> Statistics</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#"><i class="icon-cancel"></i> Clear list</a></li>
+                                    </ul>
+                                 </li> -->
+                                <li><a data-rel="collapse" href="#"><i class="icon-down-open"></i></a></li>
+                                <!-- <li><a data-rel="reload" href="#"><i class="icon-arrows-ccw"></i></a></li> -->
+                                <li><a data-rel="close" href="#"><i class="icon-cancel"></i></a></li>
+                            </ul> 
+                        </div> 
+                        <br>
+                        <!-- panel body --> 
+      <div class="panel-body"> 
+             <div class="panel-body collapse in" id="collapsepanel">
+              <ol class="breadcrumb breadcrumb-2"> 
+                <li><a href="/home/dashboard"><i class="icon-folder"></i>Home</a></li> 
+                <li class="active">Employee</li> 
+              </ol> 
+            </div>
+ 
+<%= form_with(model: employee, local: true) do |form| %>
+  <% if employee.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
+
+      <ul>
+      <% employee.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <form class="form-horizontal">
+
+     <div class="form-group">
+        <div class="col-md-4">
+          <label class="col-sm-6 control-label">Name<font color="red">*</font></label>
+          <%= form.text_field :name, id: :employee_name, placeholder: 'Employee Name' , class: 'form-control'%>
+        </div>
+    </div>
+
+     <div class="form-group">
+        <div class="col-md-4">
+          <label class="col-sm-6 control-label">Designation</label>
+         <%= form.text_field :designation, id: :employee_designation, placeholder: 'Employee Designation',  class: 'form-control' %>
+      </div>
+    </div>
+
+     <div class="form-group">
+        <div class="col-md-4">
+          <label class="col-sm-8 control-label">Employee Adhar No</label>
+        <%= form.text_field :adhar_card_no, id: :employee_adhar_card_no, placeholder: 'Employee Adhar No', class: 'form-control'%>
+      </div>
+    </div>
+
+     <div class="form-group">
+        <div class="col-md-4">
+          <label class="col-sm-6 control-label">Contact No<font color="red">*</font></label>
+          <%= form.text_field :contact_no, id: :employee_contact_no,placeholder: 'Contact', class: 'form-control' ,maxLength: "10"%>
+       </div>
+     </div>
+
+   <div class="form-group">
+        <div class="col-md-4">
+          <label class="col-sm-6 control-label">Alternate Contact</label>
+           <%= form.text_field :alternate_contact_no, id: :employee_alternate_contact_no, placeholder: 'Alternate Contact' , class: 'form-control',maxLength: "10"%>
+       </div>
+    </div>
+
+   <div class="form-group">
+        <div class="col-md-4">
+          <label class="col-sm-6 control-label">Email<font color="red">*</font></label>
+        <%= form.text_field :email, id: :email, placeholder: 'Email',  class: 'form-control'%>
+      </div>
+   </div>
+
+  <div class="form-group">
+        <div class="col-md-4">
+          <label class="col-sm-6 control-label">Joining Date</label>
+         <%= form.date_field :joining_date, id: :employee_joining_date, placeholder: 'Joining Date',  class: 'form-control'%>
+       </div>
+    </div>
+
+   <div class="form-group">
+        <div class="col-md-4">
+          <label class="col-sm-10 control-label">Date of Birth</label>
+       <%= form.date_field :birth_place, id: :employee_birth_place,class: 'form-control' %>
+      </div>
+  </div>
+
+     <div class="form-group">
+        <div class="col-md-4">
+          <label class="col-sm-6 control-label">Address</label>
+        <%= form.text_field :address, id: :employee_address, placeholder: 'Address',class: 'form-control' %>
+    <br>
+  </div>
+  </div>
+
+    <div class="form-group">
+        <div class="col-md-4">
+          <label class="col-sm-6 control-label">Employee  No</label>
+    <%= form.text_field :employee_no, id: :employee_employee_no,readonly: true,:value=> @employee.employee_no, class: "form-control" %>
+  </div>
+</div>
+
+<%if current_user.role == 'SuperAdmin'%>
+     <div class="form-group">
+        <div class="col-md-4">
+          <label class="col-sm-6 control-label">Center Select<font color="red">*</font></label>
+    <%= form.select :center_id, Center.all.collect{|c| [c.center_name,c.id]}, {prompt:true},id: 'employee_center_id',class: "form-control selectpicker", "data-live-search" => "true" 
+ %>
+    </div>
+  </div>
+<%end%>
+
+ <div class="col-md-4"> 
+                  <div class="form-group"> 
+                    <label for="username" class="control-label">Upload Photo</label>
+
+                    <%= form.file_field :photo, placeholder: "Upload Photo", class: "form-control"%>
+                  </div> 
+                </div>
+                
+
+  <div class="form-group">
+        <div class="col-md-4">
+          <label class="col-sm-6 control-label">Status</label>
+  <%= form.radio_button "employee_status", "Active" %> <b>Active</b>
+              <%= form.radio_button "employee_status", "Inactive", checked: "checked"%> <b>Inactive</b>
+                 </div>
+</div> 
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <div class="form-group"> 
+                                <div class="col-sm-offset-1 col-sm-10">  
+    <%= form.submit "Submit", class: 'btn btn-success' %>
+    <%= link_to 'Back', employees_path, class: 'btn btn-red' %>
+     
+  </div>
+  </div>
+<% end %>
+</div>
+</div>
+</div>
+</div>
+<script type="text/javascript">
+  var validateEmail = function(elementValue) {
+    var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    return emailPattern.test(elementValue);
+}
+$('#email').keyup(function() {
+    var value = $(this).val();
+    var valid = validateEmail(value);
+    if (!valid) {
+        $(this).css('color', 'red');
+    } else {
+        $(this).css('color', '#000');
+    }
+});
+</script>

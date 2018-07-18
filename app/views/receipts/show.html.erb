@@ -1,0 +1,181 @@
+<%= render 'layouts/messages'%>
+<div class="col-md-12"> 
+ <br>
+   <br>
+          <div class="panel panel-info">
+            <div class="panel-heading clearfix"> 
+              <div class="panel-title">Receipt Detail</div> 
+              <ul class="panel-tool-options"> 
+               <!--  <li class="dropdown">
+                  <a data-toggle="dropdown" class="dropdown-toggle" href="#" aria-expanded="false"><i class="icon-cog"></i></a>
+                  <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="#"><i class="icon-arrows-ccw"></i> Update data</a></li>
+                    <li><a href="#"><i class="icon-list"></i> Detailed log</a></li>
+                    <li><a href="#"><i class="icon-chart-pie"></i> Statistics</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#"><i class="icon-cancel"></i> Clear list</a></li>
+                  </ul>
+                 </li> -->
+                <li><a data-rel="collapse" href="#"><i class="icon-down-open"></i></a></li>
+<!--                 <li><a data-rel="reload" href="#"><i class="icon-arrows-ccw"></i></a></li>
+ -->                <li><a data-rel="close" href="#"><i class="icon-cancel"></i></a></li>
+              </ul>  
+            </div>
+
+            <%= link_to 'Download PDF ',print_receipt_receipt_path(@receipt, format: 'pdf'),target: '_blank', class: "btn btn-primary"%> <b>
+
+            <!-- panel body --> 
+            <div class="panel-body"> 
+<p id="notice"><%= notice %></p>
+
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>GST Number:</strong>
+   <%= @receipt.gst_no %>
+</p>
+</div>
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Invoice Number:</strong>
+   <%= @receipt.invoice_number%>
+</p>
+</div>
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Date of Invoice:</strong>
+   <%= @receipt.date %>
+</p>
+</div>
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>GSTIN No of Customer:</strong>
+   <%= @receipt.gstin_no_of_customer%>
+</p>
+</div>
+
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Received From:</strong>
+   <%= @receipt.received_from %>
+</p>
+</div>
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Amount:</strong>
+   <%= @receipt.amount %>
+</p>
+</div>
+
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Towards:</strong>
+   <%= @receipt.towards %>
+</p>
+</div>
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Payment Mode:</strong>
+   <%= @receipt.payment_mode %>
+</p>
+</div>
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Check Number:</strong>
+   <%= @receipt.check_no %>
+</p>
+</div>
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Check Date:</strong>
+   <%= @receipt.check_date %>
+</p>
+</div>
+
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Bank Name:</strong>
+   <%= @receipt.bank_name %>
+</p>
+</div>
+
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Transaction Id:</strong>
+   <%= @receipt.transaction_id%>
+</p>
+</div>
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Payment:</strong>
+   <%= @receipt.current_payment%>
+</p>
+</div>
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Payment Date:</strong>
+   <%= @receipt.date%>
+</p>
+</div>
+
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Pending fees:</strong>
+   <%= @receipt.pending_payment%>
+</p>
+</div>
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Description of Services:</strong>
+   <%= @receipt.description_of_services%>
+</p>
+</div>
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>CGST:</strong>
+   <%= @receipt.cgst%>
+</p>
+</div>
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>SGST:</strong>
+   <%= @receipt.sgst%>
+</p>
+</div>
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Taxable Value:</strong>
+   <%= @receipt.payment%>
+</p>
+</div>
+
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Total Rate:</strong>
+   <%= @receipt.igst%>
+</p>
+</div>
+
+
+
+
+<%= link_to 'Back', new_receipt_path, class: 'btn btn-blue btn-outline' %>

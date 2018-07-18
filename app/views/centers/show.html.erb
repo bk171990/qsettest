@@ -1,0 +1,147 @@
+<%= render 'layouts/messages'%>
+<div class="col-md-12"> 
+ <br>
+                 <br>
+          <div class="panel panel-info">
+            <div class="panel-heading clearfix"> 
+              <div class="panel-title">Center Detail</div> 
+              <ul class="panel-tool-options"> 
+               <!--  <li class="dropdown">
+                  <a data-toggle="dropdown" class="dropdown-toggle" href="#" aria-expanded="false"><i class="icon-cog"></i></a>
+                  <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="#"><i class="icon-arrows-ccw"></i> Update data</a></li>
+                    <li><a href="#"><i class="icon-list"></i> Detailed log</a></li>
+                    <li><a href="#"><i class="icon-chart-pie"></i> Statistics</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#"><i class="icon-cancel"></i> Clear list</a></li>
+                  </ul>
+                 </li> -->
+                <li><a data-rel="collapse" href="#"><i class="icon-down-open"></i></a></li>
+<!--                 <li><a data-rel="reload" href="#"><i class="icon-arrows-ccw"></i></a></li>
+ -->                <li><a data-rel="close" href="#"><i class="icon-cancel"></i></a></li>
+              </ul>  
+            </div> 
+            <!-- panel body --> 
+            <div class="panel-body"> 
+   <div class="panel-body collapse in" id="collapsepanel">
+              <ol class="breadcrumb breadcrumb-2"> 
+                <li><a href="/home/dashboard"><i class="icon-folder"></i>Home</a></li> 
+                <li class="active">Center</li> 
+              </ol> 
+            </div>
+ 
+<p id="notice"><%= notice %></p>
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Photo:</strong>
+<img width="90" class="img-square avatar" alt="" <%= image_tag @center.photo.url %>
+</p>
+</div>
+
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Center name:</strong>
+  <%= @center.center_name %>
+</p>
+</div>
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Address:</strong>
+  <%= @center.address %>
+</p>
+</div>
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>City:</strong>
+  <%= @center.city %>
+</p>
+</div>
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>State:</strong>
+  <%= @center.state %>
+</p>
+</div>
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Pan card no:</strong>
+  <%= @center.pan_card_no %>
+</p>
+</div>
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Contact:</strong>
+  <%= @center.contact %>
+</p>
+</div>
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Alternate contact:</strong>
+  <%= @center.alternate_contact %>
+</p>
+</div>
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Center starting date:</strong>
+  <%= @center.center_starting_date %>
+</p>
+</div>
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Contact person name:</strong>
+  <%= @center.contact_person_name %>
+</p>
+</div>
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Residential address:</strong>
+  <%= @center.residential_address %>
+</p>
+</div>
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Country:</strong>
+  <%= @center.countries %>
+</p>
+</div> 
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Center code:</strong>
+  <%= @center.center_code %>
+</p>
+</div>
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Status:</strong>
+  <%= @center.center_status %>
+</p>
+</div> 
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Email:</strong>
+  <%= @center.email %>
+</p>
+</div> 
+
+</div></div>
+</div></div><%= link_to 'Edit', edit_center_path(@center), class: 'btn btn-red btn-outline' if current_user.role != "Center" && current_user.role != "Employee" %> 
+<%if current_user.role == 'Center' || current_user.role == 'Employee'%>
+<%#= link_to 'Back', update_center_centers_path, class: 'btn btn-blue btn-outline'  %>
+
+<%= link_to 'Back', "/home/dashboard", class: 'btn btn-blue btn-outline'  %>
+<%end%>

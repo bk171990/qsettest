@@ -1,0 +1,125 @@
+<div class="row"> 
+                <div class="col-md-12">
+                 <br>
+                 <br>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading clearfix"> 
+                            <div class="panel-title">Centers</div> 
+                            <ul class="panel-tool-options"> 
+                               <!--  <li class="dropdown">
+                                    <a data-toggle="dropdown" class="dropdown-toggle" href="#" aria-expanded="false"><i class="icon-cog"></i></a>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li><a href="#"><i class="icon-arrows-ccw"></i> Update data</a></li>
+                                        <li><a href="#"><i class="icon-list"></i> Detailed log</a></li>
+                                        <li><a href="#"><i class="icon-chart-pie"></i> Statistics</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#"><i class="icon-cancel"></i> Clear list</a></li>
+                                    </ul>
+                                 </li> -->
+                                <li><a data-rel="collapse" href="#"><i class="icon-down-open"></i></a></li>
+                                <!-- <li><a data-rel="reload" href="#"><i class="icon-arrows-ccw"></i></a></li> -->
+                                <li><a data-rel="close" href="#"><i class="icon-cancel"></i></a></li>
+                            </ul> 
+                        </div> 
+                        <br>
+                       
+                        <div class="panel-body">
+                         <div class="panel-body collapse in" id="collapsepanel">
+                                  <ol class="breadcrumb breadcrumb-2"> 
+                                    <li><a href="/home/dashboard"><i class="icon-folder"></i>Home</a></li> 
+                                    <li class="active">Courses</li> 
+                                  </ol> 
+                                </div> 
+<%= form_with(model: course, local: true) do |form| %>
+  <% if course.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(course.errors.count, "error") %> prohibited this course from being saved:</h2>
+
+      <ul>
+      <% course.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+ <form class="form-horizontal">
+
+  <div class="form-group">
+        <div class="col-md-4">
+          <label class="col-sm-6 control-label">Course Name<font color="red">*</font></label>
+   <%= form.text_field :course_name, id: :course_course_name, placeholder: 'Course Name', class: 'form-control' %>
+  </div>
+  </div>
+
+  <%if current_user.role == 'Center'%>
+  <div class="form-group">
+        <div class="col-md-4">
+          <label class="col-sm-6 control-label">Course Type<font color="red">*</font></label>
+    <%= form.select :course_type_id,current_user.center.course_types.collect{|a| [a.course_type_name,a.id]}, {prompt:true},id: 'course_course_type_id',class: "form-control selectpicker", "data-live-search" => "true"  %>
+  </div>
+  </div>
+  <%else%>
+     <div class="form-group">
+        <div class="col-md-4">
+          <label class="col-sm-6 control-label">Course Type<font color="red">*</font></label>
+    <%= form.select :course_type_id,CourseType.all.collect{|a| [a.course_type_name,a.id]}, {prompt:true},id: 'employee_center_id',class: "form-control selectpicker", "data-live-search" => "true"  %>
+  </div>
+  </div>
+  <%end%>
+<!-- 
+   <%#if current_user.role == 'Center'%>
+    <div class="form-group">
+        <div class="col-md-4">
+          <label class="col-sm-6 control-label">University<font color="red">*</font></label>
+    <%#= form.select :university_id,current_user.center.universities.collect{|a| [a.university_name,a.id]},{prompt:true},id: 'employee_center_id',class: "form-control selectpicker", "data-live-search" => "true"  %>
+  </div>
+  </div>
+  <%#else%>
+  <div class="form-group">
+        <div class="col-md-4">
+          <label class="col-sm-6 control-label">University<font color="red">*</font></label>
+    <%#= form.select :university_id,University.all.collect{|a| [a.university_name,a.id]},{prompt:true},id: 'employee_center_id',class: "form-control selectpicker", "data-live-search" => "true"  %>
+  </div>
+  </div>
+  <%#end%> -->
+<!-- 
+  <div class="form-group">
+        <div class="col-md-4">
+          <label class="col-sm-6 control-label">No of Seats</label>
+    <%#= form.text_field :no_of_seats, id: :course_no_of_seats, placeholder: 'No of Seats', class: 'form-control' %>
+  </div>
+  </div>
+
+
+ <div class="form-group">
+        <div class="col-md-4">
+          <label class="col-sm-6 control-label">Fees</label>
+    <%#= form.text_field :fees, id: :course_fees, placeholder: 'Fees', class: 'form-control' %>
+  </div>
+</div> -->
+
+<% if current_user.role == 'SuperAdmin'%>
+  <div class="form-group">
+        <div class="col-md-4">
+          <label class="col-sm-6 control-label">Status</label>
+  <%= form.radio_button "status", "true", checked: "checked" %> <b>Active</b>
+              <%= form.radio_button "status", "false"%> <b>Inactive</b>
+              <br><br><br>
+ </div>
+ </div>
+ <%end%>
+
+ <br><br><br><br><br><br><br><br><br>
+            <div class="form-group"> 
+                                <div class="col-sm-offset-1 col-sm-10">  
+      <%= form.submit "Submit", class: 'btn btn-success' %>
+    <%= link_to 'Back', courses_path , class: 'btn btn-red '%>
+     
+  </div>
+  </div>
+ 
+</div>
+<% end %>
+</div>
+</div>
+</div>

@@ -1,0 +1,331 @@
+<%= render 'layouts/messages'%>
+<%= render 'layouts/mail'%>
+<div class="col-md-12"> 
+ <br>
+                 <br>
+          <div class="panel panel-info">
+            <div class="panel-heading clearfix"> 
+              <div class="panel-title">Student Detail</div> 
+              <ul class="panel-tool-options"> 
+               <!--  <li class="dropdown">
+                  <a data-toggle="dropdown" class="dropdown-toggle" href="#" aria-expanded="false"><i class="icon-cog"></i></a>
+                  <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="#"><i class="icon-arrows-ccw"></i> Update data</a></li>
+                    <li><a href="#"><i class="icon-list"></i> Detailed log</a></li>
+                    <li><a href="#"><i class="icon-chart-pie"></i> Statistics</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#"><i class="icon-cancel"></i> Clear list</a></li>
+                  </ul>
+                 </li> -->
+                  <%#= link_to 'Download Enrollment Receipt', show_student_student_path(format: 'pdf'),target: '_blank',class: "btn btn-default btn-md"%>
+                  <%#= link_to 'Download Admission Receipt', admission_receipt_student_path(format: 'pdf'),target: '_blank',class: "btn btn-default btn-md"%>
+
+                <li><a data-rel="collapse" href="#"><i class="icon-down-open"></i></a></li>
+<!--                 <li><a data-rel="reload" href="#"><i class="icon-arrows-ccw"></i></a></li>
+ -->                <li><a data-rel="close" href="#"><i class="icon-cancel"></i></a></li>
+              </ul>  
+            </div> 
+            <!-- panel body --> 
+            <div class="panel-body"> 
+
+<p id="notice"><%= notice %></p>
+
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Photo:</strong>
+<img width="90" class="img-square avatar" alt="" <%= image_tag @student.photo.url %>
+</p>
+</div>
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Enrollment No:</strong>
+  <%= @student.enrollment%>
+</p>
+</div>
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Email:</strong>
+  <%= @student.email%>
+</p>
+</div>
+
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>First name:</strong>
+  <%= @student.first_name %>
+</p>
+</div>
+
+
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Last name:</strong>
+  <%= @student.last_name %>
+</p>
+</div>
+
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Middle name:</strong>
+  <%= @student.middle_name %>
+</p>
+</div>
+
+
+<% if current_user.role == 'SuperAdmin' || current_user.role == 'Center'  %>
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Contact no:</strong>
+  <%= @student.contact_no  %>
+</p>
+</div>
+<% end %>
+
+<% if current_user.role == 'SuperAdmin' || current_user.role == 'Center'  %>
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Alternate contact no:</strong>
+  <%= @student.alternate_contact_no if current_user.role == 'SuperAdmin'  %>
+</p>
+</div>
+<% end %>
+
+
+
+
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Gender:</strong>
+  <%= @student.gender %>
+</p>
+</div>
+
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Date of birth:</strong>
+  <%= @student.date_of_birth %>
+</p></div>
+
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Father name:</strong>
+  <%= @student.father_name %>
+</p></div>
+
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Mother name:</strong>
+  <%= @student.mother_name %>
+</p></div>
+
+<% if current_user.role == 'SuperAdmin' || current_user.role == 'Center'  %>
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Father contact no:</strong>
+  <%= @student.father_contact_no if current_user.role == 'SuperAdmin' %>
+</p></div>
+<% end %>
+
+<% if current_user.role == 'SuperAdmin' || current_user.role == 'Center'  %>
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Mother contact no:</strong>
+  <%= @student.mother_contact_no if current_user.role == 'SuperAdmin' %>
+</p></div>
+<% end %>
+
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Permanent address:</strong>
+  <%= @student.permanent_address %>
+</p>
+</div>
+
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>State:</strong>
+  <%= @student.state %>
+</p>
+</div>
+
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Country:</strong>
+  <%= @student.country %>
+</p></div>
+
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Tenth:</strong>
+  <%= @student.tenth %>
+</p></div>
+
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Twelth:</strong>
+  <%= @student.twelth %>
+</p>
+</div>
+
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Pcm:</strong>
+  <%= @student.pcm %>
+</p>
+</div>
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Pcmb:</strong>
+  <%= @student.pcmb %>
+</p>
+</div>
+
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Graduation:</strong>
+  <%= @student.graduation %>
+</p></div>
+
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Post graduation:</strong>
+  <%= @student.post_graduation %>
+</p>
+</div>
+
+
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Passport:</strong>
+  <%= @student.passport_available %>
+</p>
+</div>
+
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Course:</strong>
+  <%= @student.course.course_name %>
+</p>
+</div>
+
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Course Type:</strong>
+  <%= @student.course_type.course_type_name %>
+</p>
+</div>
+
+<%if current_user.role == 'Employee'%>
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Center:</strong>
+  <%= current_user.employee.center.center_name %>
+</p>
+</div>
+<%end%>
+
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>University:</strong>
+  <%= @student.university.university_name %>
+</p>
+</div>
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Blood Group:</strong>
+  <%= @student.blood_group %>
+</p>
+</div>
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Contact Person Name:</strong>
+  <%= @student.reference_student %>
+</p>
+</div>
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Where Did you find Us:</strong>
+  <%= @student.refarence.name %>
+</p>
+</div>
+
+<%if current_user == 'Employee'%>
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Admission Done By:</strong>
+  <%= current_user.employee.name%>
+</p>
+</div>
+<%end%>
+
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Student Admission Year:</strong>
+  <%= @student.admission_year%>
+</p>
+</div>
+
+<%if current_user == 'Center'%>
+<div class="col-md-4">
+<p class="text-info">
+  <strong>Admission Done By:</strong>
+  <%= current_user.center.center_name%>
+</p>
+</div>
+<%end%>
+</div>
+
+
+
+
+<% if current_user.role == 'SuperAdmin' || current_user.role == 'Employee' %>
+<%= link_to 'View aLL', view_all_students_path, class: 'btn btn-blue btn-outline' %>
+<%= link_to 'Generate Receipt',generate_receipt_receipt_path(@student), class: 'btn btn-success' %>
+<%#= link_to 'Send Email' ,new1_email_path(@student) ,class: 'btn btn-primary' %>
+<%#= link_to 'Generate Receipt', new_receipt_path, class: 'btn btn-success'%>
+<%end%>
+<% if current_user.role == 'Student'%>
+<%= link_to 'Back', students_path, class: 'btn btn-blue btn-outline' %>
+<%end%>
+
+
+  <!-- <center><p>
+          <button  type="button" data-toggle="modal" data-target="#formModal" style="width: 181px; height: 24px;background: red;color: white;">
+          Send Mail
+          </button>
+        </p>
+          </center>  -->
+
+ 
+                <%#= render '/emails/form', modal: true %>
+          </div>      
+
+      </div>
+   
+    </center>

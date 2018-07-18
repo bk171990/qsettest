@@ -1,0 +1,107 @@
+<div class="row"> 
+                <div class="col-md-12">
+                 <br>
+                 <br>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading clearfix"> 
+                            <div class="panel-title">General Settings</div> 
+                            <ul class="panel-tool-options"> 
+                               <!--  <li class="dropdown">
+                                    <a data-toggle="dropdown" class="dropdown-toggle" href="#" aria-expanded="false"><i class="icon-cog"></i></a>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li><a href="#"><i class="icon-arrows-ccw"></i> Update data</a></li>
+                                        <li><a href="#"><i class="icon-list"></i> Detailed log</a></li>
+                                        <li><a href="#"><i class="icon-chart-pie"></i> Statistics</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#"><i class="icon-cancel"></i> Clear list</a></li>
+                                    </ul>
+                                 </li> -->
+                                <li><a data-rel="collapse" href="#"><i class="icon-down-open"></i></a></li>
+                                <!-- <li><a data-rel="reload" href="#"><i class="icon-arrows-ccw"></i></a></li> -->
+                                <li><a data-rel="close" href="#"><i class="icon-cancel"></i></a></li>
+                            </ul> 
+                        </div> 
+                        <br>
+                       
+                        <div class="panel-body"> 
+                <%= form_for @general_setting,method: :patch do |f| %>
+                         <form class="form-horizontal">
+
+
+                            <div class="form-group">
+                            <div class="col-md-4">
+                                <label class="col-sm-6 control-label">Company Name</label>
+										<%= f.text_field :registered_name, placeholder: "Name", class: "form-control" %>
+                            </div>
+                            </div>
+
+                            <div class="form-group">
+                            <div class="col-md-4">
+                               <label class="col-sm-6 control-label">Contact</label>
+										<%= f.text_field :phone_no, placeholder: "Phone No", class: "form-control"%>
+                            </div>
+                            </div>
+
+                            <div class="form-group">
+                            <div class="col-md-4">
+                               <label class="col-sm-6 control-label">Alternate contact</label>
+                                         <%= f.text_field :mobile_no, placeholder: "Mobile No", class: "form-control"%>
+                            </div>
+                            </div>
+
+                            <div class="form-group">
+                            <div class="col-md-4">
+                                <label class="col-sm-6 control-label">Address</label>
+                                        <%= f.text_field :address, placeholder: "Address", class: "form-control"%>
+                           </div>
+                           </div>
+
+                           <div class="form-group">
+                            <div class="col-md-4">
+                               <label class="col-sm-6 control-label">Email</label>
+                                     
+                                         <%= f.text_field :email, placeholder: "Email", class: "form-control"%>
+                            </div>
+                            </div>
+
+                            <div class="form-group">
+                            <div class="col-md-4">
+                               <label class="col-sm-6 control-label">City</label>
+                                     
+                                         <%= f.text_field :city, placeholder: "City", class: "form-control"%>
+                            </div>
+                            </div>
+
+                            <div class="form-group">
+                            <div class="col-md-4">
+                               <label class="col-sm-6 control-label">State</label>
+                                     
+                                         <%= f.text_field :state, placeholder: "State", class: "form-control"%>
+                            </div>
+                            </div>
+                             
+                             <div class="form-group">
+                             <div class="col-md-4">
+                              <label class="col-sm-6 control-label">Pincode</label>
+                                    
+                                         <%= f.text_field :pincode, placeholder: "Pincode", class: "form-control"%>
+                            </div>
+                            </div>
+
+                            <div class="form-group">
+                             <div class="col-md-4">
+                              <label class="col-sm-6 control-label">Logo</label>
+                                    
+                                         <%= f.file_field :logo, placeholder: "Company Logo", class: "form-control"%>
+                            </div> 
+                        </div>
+                           <br><br><br><br><br><br><br><br><br><br>
+                        <div class="form-group"> 
+                                <div class="col-sm-offset-1 col-sm-10"> 
+                                    <%= f.submit "Update", class: "btn btn-primary"%>
+                                    <%= link_to "Back",dashboard_home_index_path, class: "btn btn-blue"%>
+                        </div>
+                        </div>
+      </form>           
+ <% end %>
+ </div></div></div></div>
